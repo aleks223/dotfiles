@@ -33,7 +33,7 @@ BATPC=`echo $CAPACITY $CURRENT | awk '{printf "%d", ($2/$1)*100'}`
 BAT="Batterie $BATPC%"
 if [ $BATPC = "168" ]
 then
-	BAT="Batterie pleine"
+	BAT="batterie pleine"
 fi
 
 STATE=`cat /proc/acpi/battery/BAT0/info | grep present | awk '{print $2}'`
@@ -42,7 +42,12 @@ then
 	BAT=""
 fi
 
+if [ $VOL = "0%" ]
+then
+	VOL="mute"
+fi
+
 #Affichage
 #wmfs -s "\\#19C206\\ $MUSICCUR\\#CC00DE\\$BATPC \\#0081DE\\ Volume $VOL \\#FF0000\\  CPU $CPUPC%   Mémoire $MEMPC%  \\#FF9203\\ $DATE"
 
-wmfs -s "\\#19C206\\ $MUSICCUR \\#CC00DE\\$BAT \\#0081DE\\ Volume $VOL \\#FF0000\\ $DATE"
+wmfs -s "\\#FFCC00\\ $MUSICCUR \\#CC00DE\\$BAT \\#0081DE\\$VOL  \\#8FEA26\\ $DATE"

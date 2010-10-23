@@ -1,11 +1,13 @@
 #s__C config
 
 [misc]
-	#font		= "cure-arrows"
-	font		= "Envy Code R-8"
+	font		= "cure-arrows-9"
+	#font		= "Envy Code R-8"
+	#font		= "Neuropolitical-6.5"
+	#font		= "snap-8"
 	#font 		= "Pragmata-8"	
 	#font		= "Off The Drugs-11"	
-	#font		= "HelveticaNeue LT77 BdCn-9"
+	#font		= "HelveticaNeue LT77 BdCn-8"
 	raisefocus         = false
         focus_follow_mouse = true
         # focus_pointer_click: click on unfocused client area:
@@ -16,8 +18,8 @@
 [/misc]
 
 [bar]
-        bg     = "#D4D4D4"
-        fg     = "#333333"
+        bg     = "#181818"
+        fg     = "#D4D4D4"
         border = false
 	#height = 16
         # selbar = false   #not worked now, see section [selbar]
@@ -27,16 +29,16 @@
         #        bg = "#333333"
         #        fg = "#D4D4D4"
 
-                # Cut title lenght
-                # max_lenght = 25
+        #         Cut title lenght
+        #         max_lenght = 25
 
-        #        [mouse] button = "3" func = "clientlist"  [/mouse]
-        #        [mouse] button = "5" func = "client_next" [/mouse]
-        #        [mouse] button = "4" func = "client_prev" [/mouse]
-        #[/selbar]
+ 	#    [mouse] button = "3" func = "clientlist"  [/mouse]
+  	#    [mouse] button = "5" func = "client_next" [/mouse]
+   	#    [mouse] button = "4" func = "client_prev" [/mouse]
+    	#[/selbar]
 
 	[systray]
-		active = false
+		active = true
 		spacing = 2
 		screen = 0
 	[/systray]
@@ -44,8 +46,8 @@
 [/bar]
 
 [layouts]
-        bg = "#D4D4D4"
-        fg = "#333333"
+        bg = "#181818"
+        fg = "#8FEA26"
 
         # Border around the layout button.
         border = false
@@ -90,9 +92,9 @@
 
 [tags]
         tag_round      = true
-        occupied_bg    = "#BAB8AD"
-        sel_fg         = "#D4D4D4"
-        sel_bg         = "#0081DE"
+        occupied_bg    = "#333333"
+        sel_fg         = "#8FEA26"
+        sel_bg         = "#181818"
         urgent_bg      = "#FFCC00"
         urgent_fg      = "#333333"
         # If true, number of the tag will be used for name
@@ -150,7 +152,7 @@
 	
 	[tag]
 	    name = "media"
-	    clients = {"mplayer","sonata","ncmpcpp"}
+	    clients = {"sonata","ncmpcpp"}
 	    screen = 0
 	    mwfact = 0.50
 	    nmaster = 1
@@ -183,7 +185,7 @@
 
 	[tag]
 	    name = "dev"
-	    clients = {"Gedit","Geany","Gummi","sage"}
+	    clients = {"Gedit","Geany","Eclipse","sage","Texmaker","Ooffice"}
 	    screen = 0
 	    mwfact = 0.65
 	    nmaster = 1
@@ -216,19 +218,19 @@
         client_round         = true
         border_height        = 2
         border_shadow        = false
-        border_normal        = "#333333"
-        border_focus         = "#0081DE"
-        resize_corner_normal = "#333333"
-        resize_corner_focus  = "#0081DE"
+        border_normal        = "#181818"
+        border_focus         = "#181818"
+        resize_corner_normal = "#181818"
+        resize_corner_focus  = "#181818"
 
         # Space between tiled clients
-        padding = 8
+        padding = 4
 
         # Modifier for mouse use
         modifier = "Super"
 
         # Set automatic free or max client
-        autofree = "Vlc,Download,feh,xarchive,xcalc,Mplayer"
+        autofree = "Vlc,feh,xarchive,xcalc,mplayer"
         # automax  = "Navigator"
 
         [mouse] button = "1" func = "client_raise" [/mouse]
@@ -237,28 +239,28 @@
         [mouse] button = "3" func = "mouse_resize" [/mouse]
 
         # Remove this section to delete the titlebar.
-#        [titlebar]
-#                stipple   = false
-#                height    = 1
-#                fg_normal = "#333333"
-#                fg_focus  = "#333333"
+       # [titlebar]
+        #        stipple   = false
+         #       height    = 1
+          #      fg_normal = "#333333"
+           #     fg_focus  = "#333333"
 #
-#                [mouse] button = "1" func = "client_raise" [/mouse]
-#                [mouse] button = "1" func = "mouse_move"   [/mouse]
-#                [mouse] button = "3" func = "client_raise" [/mouse]
-#                [mouse] button = "3" func = "mouse_resize" [/mouse]
+ #               [mouse] button = "1" func = "client_raise" [/mouse]
+  #              [mouse] button = "1" func = "mouse_move"   [/mouse]
+   #             [mouse] button = "3" func = "client_raise" [/mouse]
+    #            [mouse] button = "3" func = "mouse_resize" [/mouse]
 #
-#                [button]
-#                        # Available "free", "max", "tile" flags of button.
-#                        flags = "free,max,tile"
-#                        [mouse] button = "1" func = "client_kill"             [/mouse]
-#                        [mouse] button = "3" func = "menu" cmd = "clientmenu" [/mouse]
+ #               [button]
+  #                      # Available "free", "max", "tile" flags of button.
+   #                     flags = "free,max,tile"
+    #                    [mouse] button = "1" func = "client_kill"             [/mouse]
+     #                   [mouse] button = "3" func = "menu" cmd = "clientmenu" [/mouse]
 #
-#                        [line] coord = {1, 1, 4, 1} [/line]
-#                        [line] coord = {1, 1, 1, 4} [/line]
-#                        [line] coord = {1, 4, 4, 4} [/line]
-#                [/button]
-#        [/titlebar]
+   #                     [line] coord = {1, 1, 4, 1} [/line]
+    #                    [line] coord = {1, 1, 1, 4} [/line]
+     #                   [line] coord = {1, 4, 4, 4} [/line]
+      #          [/button]
+       # [/titlebar]
 [/client]
 
 [menu]
@@ -383,9 +385,9 @@
 
 [keys]
         # Select the next client.
-        [key] mod = {"Alt","Tab"} func = "client_next" [/key]
+        [key] mod = {"Super","Tab"} func = "client_next" [/key]
         # Select the previous client.
-        [key] mod = {"Alt","Shift","Tab"} key = "h" func = "client_prev" [/key]
+        [key] mod = {"Super","Shift","Tab"} key = "h" func = "client_prev" [/key]
         # Select the next tag.
         [key] mod = {"Super"} key = "Right" func = "tag_next" [/key]
         # Select the previous tag.
@@ -415,13 +417,13 @@
         [key] mod = {"Control","Alt"} key = "r" func = "reload" [/key]
 
         # Toggle maximum the selected client
-        [key] mod = {"Super"} key = "m" func = "toggle_max" [/key]
+        [key] mod = {"Alt"} key = "m" func = "toggle_max" [/key]
         # Toggle free the selected client.
-        [key] mod = {"Super"} key = "f" func = "toggle_free" [/key]
+        [key] mod = {"Alt"} key = "f" func = "toggle_free" [/key]
         # Toggle the position of the infobar.
-        [key] mod = {"Super"} key = "b" func = "toggle_infobar_position" [/key]
+        [key] mod = {"Alt"} key = "b" func = "toggle_infobar_position" [/key]
         # Toggle the resizehint of the current tag/screen
-        [key] mod = {"Super"} key = "r" func = "toggle_resizehint" [/key]
+        [key] mod = {"Alt"} key = "r" func = "toggle_resizehint" [/key]
 
         # Set the next layout.
         [key] mod = {"Alt"} key = "space" func = "layout_next" [/key]
@@ -435,25 +437,33 @@
         [key] mod = {"Super"} key = "c" func = "spawn" cmd = "chromium" [/key]
 	[key] mod = {"Super"} key = "n" func = "spawn" cmd = "mpd && urxvtc -name ncmpcpp -e ncmpcpp" [/key]
 	[key] mod = {"Super"} key = "w" func = "spawn" cmd = "urxvtc -name weechat -e weechat-curses" [/key]
+	[key] mod = {"Super"} key = "r" func = "spawn" cmd = "urxvtc -name ranger -e ranger" [/key]
 	[key] mod = {"Super"} key = "l" func = "spawn" cmd = "slock" [/key]
 	[key] mod = {"Super"} key = "j" func = "spawn" cmd = "jumanji" [/key]
 	[key] mod = {"Super"} key = "f" func = "spawn" cmd = "firefox-beta-fr" [/key]
 
         #Launcher,ViWMFS
         [key] mod = {"Alt"} key = "u" func = "launcher" cmd = "viwmfs" [/key]
-        [key] mod = {"Super"} key = "x" func = "launcher" cmd = "launcher_exec" [/key] #sinon remplacer par dmenu_run -fa 'HelveticaNeue LT 77 BdCn:size=10' -nb '#333333' -nf '#D4D4D4' -sf '#0081DE' -sb '#333333' -p 'Select:'
+        [key] mod = {"Super"} key = "x" func = "launcher" cmd = "launcher_exec" [/key]
 
         # Set the tag x.
-        #[key] mod = {""} key = "F1" func = "tag" cmd = "1" [/key]
-        #[key] mod = {""} key = "F2" func = "tag" cmd = "2" [/key]
-        #[key] mod = {""} key = "F3" func = "tag" cmd = "3" [/key]
-        #[key] mod = {""} key = "F4" func = "tag" cmd = "4" [/key]
+        [key] mod = {"Super"} key = "F1" func = "tag" cmd = "1" [/key]
+        [key] mod = {"Super"} key = "F2" func = "tag" cmd = "2" [/key]
+        [key] mod = {"Super"} key = "F3" func = "tag" cmd = "3" [/key]
+        [key] mod = {"Super"} key = "F4" func = "tag" cmd = "4" [/key]
+        [key] mod = {"Super"} key = "F5" func = "tag" cmd = "5" [/key]
+        [key] mod = {"Super"} key = "F6" func = "tag" cmd = "6" [/key]
+        [key] mod = {"Super"} key = "F7" func = "tag" cmd = "7" [/key]
+        [key] mod = {"Super"} key = "F8" func = "tag" cmd = "8" [/key]
 
         # Transfert selected client to x.
         [key] mod = {"Alt"} key = "F1" func = "tag_transfert" cmd ="1" [/key]
         [key] mod = {"Alt"} key = "F2" func = "tag_transfert" cmd ="2" [/key]
         [key] mod = {"Alt"} key = "F3" func = "tag_transfert" cmd ="3" [/key]
         [key] mod = {"Alt"} key = "F4" func = "tag_transfert" cmd ="4" [/key]
+        [key] mod = {"Alt"} key = "F5" func = "tag_transfert" cmd ="5" [/key]
+        [key] mod = {"Alt"} key = "F6" func = "tag_transfert" cmd ="6" [/key]
+        [key] mod = {"Alt"} key = "F7" func = "tag_transfert" cmd ="7" [/key]
 
         # Toggle additional tags (x) on the current tag
         [key] mod = {"Alt","Super"} key = "F1" func = "tag_toggle_additional" cmd ="1" [/key]

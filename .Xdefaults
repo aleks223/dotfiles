@@ -1,6 +1,6 @@
 xterm*foreground: #D4D4D4
-xterm*background: #333333
-XTerm*cursorColor: #0081DE
+xterm*background: #181818
+XTerm*cursorColor: #8FEA26
 xterm*font: xft:Pragmata:size=8.5
 
 ! -- Xft settings -- !
@@ -18,6 +18,10 @@ URxvt*scrollBar: false
 URxvt*borderLess: false
 URxvt.perl-ext-common: default,matcher,tabbed
 URxvt.matcher.button:   1
+URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.launcher.1:   /usr/bin/jumanji
+URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
+URxvt.matcher.launcher.2:   gvim +$2 $1
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-bg: 1
 URxvt.tabbed.tabbar-fg: 3
@@ -27,11 +31,12 @@ URxvt.font:xft:Envy Code R:size=8.5
 
 ! Urxvt
 URxvt.buffered: true
-URxvt.background: #333333
+URxvt.background: #181818
 URxvt.foreground: #D4D4D4
 URxvt.cursorColor: #0081DE
 URxvt.cursorBlink: true
-URxvt.geometry: 80x18
+URxvt.geometry: 100x30
+URxvt.depth: 24
 
 URxvt.title: Urxvt
 URxvt.urlLauncher: chromium
@@ -59,7 +64,7 @@ urxvt.mapAlert: true
 
 !! jwr dark
 !black
- *color0:  #333333
+ *color0:  #181818
  *color8:  #3D3D3D
 !red
  *color1:  #8C4665

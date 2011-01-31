@@ -23,15 +23,19 @@ zle -N edit-command-line
 # }}}
 
 # {{{ Aliases & Commands
-
-
+alias ls="ls -l"
+alias la="ls -auto"
+alias -g pacman="pacman-color"
+alias nano='nano -w -E -T 4'
+alias mplayer='mplayer -msgcolor -msgmodule'
+#
 # Find the first editor listed in the 'editor' loop, then export the first
 # found.
 #
 #for editor in vim nano vi; do # Editor.
 #  which $editor > /dev/null 2>&1 && export EDITOR="$editor" && break
 #done
-export EDITOR="nano"
+export EDITOR="vim"
 compdef mplayer-build="mplayer"
 #
 # General aliases, can run on any unix based systems.
@@ -61,7 +65,7 @@ bindkey ";5C" forward-word
 HISTFILE=~/.histfile     # The history file to use.
 HISTSIZE=20000            # The max number of entries.
 SAVEHIST=20000            # The number of entries to save.
-PATH="$PATH:/usr/lib/cw:/bin:/usr/local/bin:/usr/bin:/home/alex/.scripts:$PATH"
+PATH="$PATH:/bin:/usr/local/bin:/usr/bin:/home/alex/.scripts:/usr/share/perl5/vendor_perl/auto/share/dist/Cope"
 export HISTFILE HISTSIZE SAVEHIST PATH
 
 # }}}
@@ -96,38 +100,9 @@ setopt auto_continue
 
 # {{{ Prompt stuff.
 
-function setprompt {
-
-#
-# Local colors to use in the prompt.
-#
-local DEF="${fg_bold[white]}"     # Default color.
-local DATEC="${fg_bold[white]}"
-local DATE=`date "+%H:%M"`
-local SIGN=${fg_bold[blue]}
-
-# New clean prompt.
-PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0;2m%}%n%{\e[0;34m%}@%{\e[0;2m%}%m%{\e[0;34m%}%B]%b%{\e[1;34m%}[%b%{\e[0;2m%}%~%{\e[0;34m%}%B]
-%{\e[0;34m%}└─╼%b%{\e[1;30m%}%{\e[0m%} '
-#
-# The right date.
-#
-RPS1="%{${DATEC}%}${DATE}%{${reset_color}%}"
-
-}
-
-# }}}
-
-#
-# The function precmd run settitle and setprompt each time you change directory.
-#
-function precmd {
-
-setprompt # Call the function to set the prompt.
-
-}
-
-# }}}
+# Clean prompt.
+export PROMPT="%{$fg[black]$bold_color%}╸%b%{$fg[yellow]$bold_color%}%n%{$fg[black]$bold_color%}╺─╸%b%{$fg[green]$bold_color%}%~%{$fg[black]$bold_color%}╺%{$fg[green]%}%(1j:%j:) %{$reset_color%}"
+# %{$fg[blue]$bold_color%}└─%{$fg[blue]%}╍ %{$reset_color%}"
 
 # Gestion de la couleur pour les TTY
 if [ "$TERM" = "linux" ]; then

@@ -1,5 +1,5 @@
 # Author::  s__C
-# Version:: 6.11.2010
+# Version:: 11.1.2011
 # License:: GNU GPL
 
 # == Options
@@ -7,13 +7,13 @@
 # Following options change behaviour and sizes of the window manager:
 #
 # Border size in pixel of the windows
-set :border, 1
+set :border, 3
 
 # Window move/resize steps in pixel per keypress
 set :step, 2
 
 # Window screen border snapping
-set :snap, 2
+set :snap, 4
 
 # Default starting gravity for windows (0 = gravity of last client)
 set :gravity, :center
@@ -25,16 +25,17 @@ set :urgent, true
 set :resize, false
 
 # Screen size padding (left, right, top, bottom)
-set :padding, [ 0, 0, 0, 0 ]
+set :padding,    [3, 3, 2, 2]
 
 # Font string either take from e.g. xfontsel or use xft
-set :font, "xft:Montecarlo-11"
+set :font, "xft:Pragmata-9"
+#set :font, "xft:terminus-10"
 
 # Space around windows
 set :gap, 4
 
 # Separator between sublets
-set :separator, ""
+set :separator, "·"
 
 # Outline border size in pixel of panel items
 set :outline, 0
@@ -70,10 +71,10 @@ screen 1 do
   stipple false
 
   # Content of the top panel
-  top     [ :views, :center, :separator, :clock, :separator, :center, :spacer, :separator, :mpd, :separator, :battery, :separator, :volume, :separator, :wifi, :separator, :tray ]
+  top     [ :views, :spacer, :clock, :spacer, :battery, :separator, :volume, :separator, :wifi]
 
   # Content of the bottom panel
-  bottom  [ ]
+  bottom  [ :mpd, :spacer, :tray ]
 end
 
 #
@@ -96,38 +97,43 @@ end
 #
 
 # panel and separator
-color :panel_fg,      "#989898"
-color :panel_bg,      "#181818"
-color :separator,     "#D4D4D4"
+color :stipple,      "#353535"
+color :panel,        "#151515"
+color :separator,    "#850000"
+
+# title
+color :title_fg,        "#888888"
+color :title_bg,        "#151515"
+color :title_border,    "#151515"
 
 # view button
-color :views_fg,      "#989898"
-color :views_bg,      "#181818" 
-color :views_border,  "#181818"
+color :views_fg,      "#353535"
+color :views_bg,      "#151515" 
+color :views_border,  "#151515"
 
 # sublets
-color :fg_sublets,    "#0081DE"
-color :sublets_bg,    "#181818" 
-color :sublets_border,"#181818"
+color :fg_sublets,    "#565f6f"
+color :sublets_bg,    "#151515" 
+color :sublets_border,"#151515"
  
 # focus window titles and active views
-color :focus_fg,         "#FFCC00" 
-color :focus_bg,         "#181818" 
-color :focus_border,     "#0081DE"
+color :focus_fg,         "#5d6aa6" 
+color :focus_bg,         "#151515" 
+color :focus_border,     "#ffffff"
  
 # occupied
-color :occupied_fg,      "#0081DE" 
-color :occupied_bg,      "#181818" 
-color :occupied_border,  "#181818" 
+color :occupied_fg,      "#888888" 
+color :occupied_bg,      "#151515" 
+color :occupied_border,  "#151515" 
 
 # urgent window titles and views
-color :urgent_fg,        "#181818" 
-color :urgent_bg,        "#FFCC00" 
-color :urgent_border,    "#181818" 
+color :urgent_fg,        "#FFC400" 
+color :urgent_bg,        "#151515" 
+color :urgent_border,    "#151515" 
  
 # client
-color :client_active,   "#0081DE" 
-color :client_inactive, "#989898"
+color :client_active,   "#5d6aa6" 
+color :client_inactive, "#888888"
 
 # Background color of root background
 #color :background,    "#3d3d3d"
@@ -167,17 +173,17 @@ gravity :top_right,     [100, 0, 50, 50]
 gravity :top_right33,   [100, 0, thirtythree, thirtythree]
 gravity :top_right50,   [100, 0, thirtythree, 50]
 gravity :left,          [0, 0, 50, 100]
-#gravity :left66,        [0, 50, 25, 100]
+gravity :left66,        [0, 50, 25, 100]
 gravity :left50,        [0, 50, 50, thirtythree]
 gravity :left33,        [0, 50, thirtythree, thirtythree]
 gravity :leftw,         [0, 50, 2*thirtythree, 100]
 gravity :lefth,         [0, 50, 75, 100]
 gravity :center,        [0, 0, 100, 100]
 gravity :center66,      [0, 50, 100, thirtythree]
-#gravity :center33,      [50, 50, 50, thirtythree]
+gravity :center33,      [50, 50, 50, thirtythree]
 gravity :center75,      [50, 50, 50, 100]
 gravity :right,         [100, 0, 50, 100]
-#gravity :right66,       [100, 50, 25, 100]
+gravity :right66,       [100, 50, 25, 100]
 gravity :right50,       [100, 50, 50, thirtythree]
 gravity :right33,       [100, 50, thirtythree, thirtythree]
 gravity :rightw,        [100, 0, 60, 100]
@@ -195,7 +201,8 @@ gravity :bottom_right33, [100, 100, thirtythree, thirtythree]
 gravity :gimp_image,     [  50,  50,  80, 100 ]
 gravity :gimp_toolbox,   [   0,   0,  10, 100 ]
 gravity :gimp_dock,      [ 100,   0,  10, 100 ]
-
+  # Scratchpad
+gravity :scratch, [ 46, 85, 46, 20 ]
 #
 # == Grabs
 #
@@ -273,6 +280,35 @@ gravity :gimp_dock,      [ 100,   0,  10, 100 ]
 # Escape grab
 #  grab "C-y", :SubtleEscape
 
+# Launcher
+begin
+   require "#{ENV["HOME"]}/subtle-contrib/ruby/launcher.rb" 
+ 
+   # Set fonts
+   Subtle::Contrib::Launcher.fonts = [
+     "xft:Pragmata:pixelsize=50:antialias=true",
+     "xft:Pragmata:pixelsize=25:antialias=true" 
+   ]
+ rescue LoadError => error
+   puts error
+end
+
+grab "W-x" do
+   Subtle::Contrib::Launcher.run
+end
+
+# Selector
+begin
+   require "#{ENV["HOME"]}/subtle-contrib/ruby/selector.rb"
+   Subtle::Contrib::Selector.font = "xft:Pragmata:pixelsize=50:antialias=true"
+ rescue LoadError => error
+  puts error
+end
+ 
+grab "W-y" do
+  Subtle::Contrib::Selector.run
+end
+
 # Jump to view1, view2, ...
 grab "W-S-1", :ViewJump1
 grab "W-S-2", :ViewJump2
@@ -344,20 +380,18 @@ grab "A-q", :WindowKill
 grab "W-KP_7", [ :top_left,     :top_left50,     :top_left33     ]
 grab "W-KP_8", [ :top,          :top50,          :top33          ]
 grab "W-KP_9", [ :top_right,    :top_right50,    :top_right33    ]
-grab "W-KP_4", [ :left,         :left33,         :left50,      :lefth,      :leftw         ]
-grab "W-KP_5", [ :center,       :center66,       :center75       ]
+grab "W-KP_4", [ :left,         :left33,         :left50,      :lefth,      :leftw        ]
+grab "W-KP_5", [ :center,       :center33,       :center66,       :center75 ]
 grab "W-KP_6", [ :right,        :right33,        :right50,      :righth,    :rightw       ]
 grab "W-KP_1", [ :bottom_left,  :bottom_left50,  :bottom_left33  ]
 grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
 grab "W-KP_3", [ :bottom_right, :bottom_right50, :bottom_right33 ]
 
-@dmenu = "dmenu_run -fn '-*-profont-medium-*-*-*-*-120-*-*-*-*-*-*' -nb '#181818' -nf '#989898' -sb '#181818' -sf '#FFCC00' -p 'Sélection : '"
-
 # Exec programs
 grab "W-Return", "urxvtc"
-grab "W-x", @dmenu
 grab "W-e", "gedit"
-grab "W-c", "chromium"
+grab "W-c", "iron"
+grab "W-h", "hotot"
 grab "W-m", "mpd"
 grab "W-n", "urxvtc -name ncmpcpp -e ncmpcpp"
 grab "W-t", "urxvtc -name tmux -e tmux"
@@ -366,6 +400,22 @@ grab "W-f", "filezilla"
 grab "W-p", "pcmanfm-mod"
 grab "W-r", "urxvtc -name ranger -e ranger"
 grab "W-v", "urxvtc -name vim -e vim"
+
+# MPC grabs
+grab "W-C-Right", "mpc next"
+grab "W-C-Left", "mpc prev"
+grab "W-C-Down", "mpc toggle"
+
+# Scratchpad
+grab "W-s" do
+  if((c = Subtlext::Client["scratch"]))
+    c.toggle_stick
+    c.focus
+  elsif((c = Subtlext::Subtle.spawn("urxvt -name scratch")))
+    c.tags  = [] unless(c.nil?)
+    c.flags = [ :stick ]
+  end
+end
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -480,19 +530,40 @@ end
 #
 
 # Simple tags
-tag "www", "uzbl|opera|firefox|chromium"
+tag "www", "uzbl|iron|opera|firefox|chromium|dwb"
 tag "vec", "inkscape"
 tag "vb", "virtualbox"
 
 # Placement
 tag "term" do
   match "xterm|[u]?rxvt"
-  #exclude "ncmpcpp"
+  exclude "vim|scratch"
 end
 
-tag "chat" do
-  match "pidgin"
-  #stick true
+tag "vim" do
+  match "vim"
+  gravity :right
+end
+
+tag "scratchpad" do
+  match :instance => "scratch"
+  gravity :scratch
+  urgent true
+  stick true
+end
+
+tag "default" do
+  gravity :center33
+end
+
+tag "fm" do
+  match "pcmanfm-mod"
+  gravity :right
+end
+
+tag "flash" do
+  match "<unkown>|exe|operapluginwrapper" 
+  stick true
 end
 
 tag "editor" do
@@ -515,10 +586,6 @@ tag "resize" do
   resize true
 end
 
-tag "gravity" do
-  gravity :center
-end
-
 # Modes
 tag "stick" do
   match "mplayer"
@@ -529,6 +596,11 @@ end
 tag "float" do
   match "display"
   float true
+end
+
+tag "hotot" do
+  match "hotot"
+  gravity :left
 end
 
 # Gimp
@@ -566,12 +638,54 @@ end
 # http://subforge.org/wiki/subtle/Tagging
 #
 
-view "term", "term|default"
-view "www",   "www"
-view "chat",  "chat"
-view "design",  "vec|gimp_.*"
-view "dev",   "editor|view"
-view "vbox", "vb"
+view "term" do
+  match "term|vim"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/terminal.xbm"
+  icon_only true
+end
+
+view "www" do
+  match "www"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/world.xbm"
+  icon_only true
+end
+
+#view "media" do
+#  match "mpd"
+#  dynamic "false"
+#  icon "#{ENV["HOME"]}/.local/share/subtle/icons/note1.xbm"
+#  icon_only true
+#end
+
+view "design" do
+  match "vec|gimp_.*"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/diagram.xbm"
+  icon_only true
+end
+
+view "dev" do
+  match "editor|view"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/notepad.xbm"
+  icon_only true
+end
+
+view "bullshit" do
+  match "default|hotot|fm"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/quote.xbm"
+  icon_only true
+end
+
+view "vbox" do
+  match "vb"
+  dynamic false
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/pc.xbm"
+  icon_only true
+end
 
 # == Hooks
 #

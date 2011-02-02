@@ -1,25 +1,29 @@
 ## ~/.ratpoisonrc
 
+startup_message off
+
+unmanage MPlayer
+
 source /home/alex/.deratify
 
-set font fixed-9
+set font Pragmata-30
 set winname class
 set winfmt %n %s %t
 set winliststyle column
 set wingravity c
-set transgravity se
+set transgravity nc
 set maxsizegravity c
-set padding 2 18 2 2
+set padding 4 4 4 4
 set border 3
 set barborder 0
-set barpadding 1 1
-set bargravity ne
+set bargravity c
 set inputwidth 400
-set fgcolor #850000
-set bgcolor #000000
+set fgcolor #151515
+set bgcolor #888888
 set fwcolor #876CBE
 set bwcolor #343434
-set waitcursor 3
+set waitcursor 2
+set msgwait 2
 set historysize 50
 set maxundos 50
 rudeness 12
@@ -27,6 +31,9 @@ escape w-q
 
 bind d time
 bind e exec
+bind b exec ratpoison -c "echo `acpi -b`"
+bind m exec ratpoison -c "echo `mpc current`"
+bind g restart
 bind f fselect
 bind h select -
 bind H exec ratpoison -c "select -" -c "only"
@@ -52,32 +59,26 @@ bind equal dedicate 1
 
 definekey top s-Return exec urxvtc
 definekey top s-t exec urxvtc -e tmux
+definekey top s-a exec urxvtc -e tmux a
 definekey top s-m exec mpd &
 definekey top s-n exec urxvtc -e ncmpcpp
 definekey top s-c exec iron
-definekey top s-p exec pcmanfm-mod
+definekey top s-p exec thunar
 definekey top s-f exec filezilla
 definekey top s-v exec urxvtc -e vim
 definekey top s-r exec urxvtc -e ranger
 definekey top s-l exec slock
+definekey top s-C-Right exec mpc next && ratpoison -c "echo `mpc current`"
+definekey top s-C-Left exec mpc prev && ratpoison -c "echo `mpc current`"
+definekey top s-C-Down exec mpc toggle && ratpoison -c "echo `mpc current`"
 
 definekey top s-Up next
 definekey top s-Down prev
-definekey top s-apostrophe focus
 definekey top C-Up focusup
 definekey top C-Down focusdown
 definekey top C-Left focusleft
 definekey top C-Right focusright
 definekey top s-Tab focuslast
-definekey top s-C-Up exchangeup
-definekey top s-C-Down exchangedown
-definekey top s-C-Left exchangeleft
-definekey top s-C-Right exchangeright
-definekey top s-C-k ratrelwarp 0 -7
-definekey top s-C-j ratrelwarp 0 7
-definekey top s-C-h ratrelwarp -7 0
-definekey top s-C-l ratrelwarp 7 0
-definekey top s-C-Return exec ratpoison -c "rathold down" -c "rathold up"
 
 definekey top s-Left rpwsp
 definekey top s-Right rpwsn
@@ -86,5 +87,6 @@ definekey top s-F2 rpws2
 definekey top s-F3 rpws3
 definekey top s-F4 rpws4
 definekey top s-F5 rpws5
-exec rpws init 5 -k
+definekey top s-F6 rpws6
+exec rpws init 6 -k
 exec xsetroot -cursor_name left_ptr

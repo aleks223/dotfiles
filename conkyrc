@@ -1,0 +1,15 @@
+background no
+out_to_x no
+out_to_console yes
+update_interval 3
+total_run_times 0
+use_spacer none
+
+TEXT
+$if_mpd_playing $mpd_artist - $mpd_title$endif ▪ \
+${cpu cpu0}%  ${freq_g 0}GHz ${cpu cpu1}%  ${freq_g 1}GHz ▪ \
+${mem} ▪ \
+${if_existing /sys/class/power_supply/BAT0/present}Bat ${battery_percent BAT0}% ${battery_time BAT0}${else}AC${endif} ▪ \
+${if_empty ${exec ifconfig wlan0 | grep 'inet addr:'}}eth0${else}\
+${wireless_link_qual_perc wlan0}%  ${wireless_essid wlan0}${endif} ▪ \
+${time %a %d %b %H:%M}

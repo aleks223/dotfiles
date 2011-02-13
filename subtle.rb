@@ -7,13 +7,13 @@
 # Following options change behaviour and sizes of the window manager:
 #
 # Border size in pixel of the windows
-set :border, 3
+set :border, 2
 
 # Window move/resize steps in pixel per keypress
 set :step, 2
 
 # Window screen border snapping
-set :snap, 4
+set :snap, 0
 
 # Default starting gravity for windows (0 = gravity of last client)
 set :gravity, :center
@@ -28,14 +28,14 @@ set :resize, false
 set :padding,    [3, 3, 2, 2]
 
 # Font string either take from e.g. xfontsel or use xft
-set :font, "xft:Pragmata-9"
-#set :font, "xft:terminus-10"
+set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-60-iso8859-*"
+#set :font, "xft:Pragmata-9"
 
 # Space around windows
-set :gap, 4
+set :gap, 0
 
 # Separator between sublets
-set :separator, "·"
+set :separator, ""
 
 # Outline border size in pixel of panel items
 set :outline, 0
@@ -71,10 +71,10 @@ screen 1 do
   stipple false
 
   # Content of the top panel
-  top     [ :views, :spacer, :clock, :spacer, :battery, :separator, :volume, :separator, :wifi]
+  top     [ :views, :title, :spacer, :mpd, :battery, :volume, :wifi, :fuzzytime, :tray]
 
   # Content of the bottom panel
-  bottom  [ :mpd, :spacer, :tray ]
+  bottom  []
 end
 
 #
@@ -97,43 +97,43 @@ end
 #
 
 # panel and separator
-color :stipple,      "#353535"
-color :panel,        "#151515"
+color :stipple,      "#eeeeee"
+color :panel,        "#eeeeee"
 color :separator,    "#850000"
 
 # title
-color :title_fg,        "#888888"
-color :title_bg,        "#151515"
-color :title_border,    "#151515"
+color :title_fg,        "#eeeeee"
+color :title_bg,        "#0066ff"
+color :title_border,    "#0066ff"
 
 # view button
-color :views_fg,      "#353535"
-color :views_bg,      "#151515" 
-color :views_border,  "#151515"
+color :views_fg,      "#555555"
+color :views_bg,      "#eeeeee" 
+color :views_border,  "#eeeeee"
 
 # sublets
-color :fg_sublets,    "#565f6f"
-color :sublets_bg,    "#151515" 
-color :sublets_border,"#151515"
+color :fg_sublets,    "#555555"
+color :sublets_bg,    "#eeeeee"
+color :sublets_border,"#eeeeee"
  
 # focus window titles and active views
-color :focus_fg,         "#5d6aa6" 
-color :focus_bg,         "#151515" 
-color :focus_border,     "#ffffff"
+color :focus_fg,         "#eeeeee" 
+color :focus_bg,         "#0066ff" 
+color :focus_border,     "#0066ff"
  
 # occupied
-color :occupied_fg,      "#888888" 
-color :occupied_bg,      "#151515" 
-color :occupied_border,  "#151515" 
+color :occupied_fg,      "#eeeeee" 
+color :occupied_bg,      "#555555" 
+color :occupied_border,  "#555555" 
 
 # urgent window titles and views
 color :urgent_fg,        "#FFC400" 
-color :urgent_bg,        "#151515" 
-color :urgent_border,    "#151515" 
+color :urgent_bg,        "#eeeeee" 
+color :urgent_border,    "#eeeeee" 
  
 # client
-color :client_active,   "#5d6aa6" 
-color :client_inactive, "#888888"
+color :client_active,   "#0066ff" 
+color :client_inactive, "#555555"
 
 # Background color of root background
 #color :background,    "#3d3d3d"
@@ -167,6 +167,7 @@ gravity :top_left,      [0, 0, 50, 50]
 gravity :top_left33,    [0, 0, thirtythree, thirtythree]
 gravity :top_left50,    [0, 0, thirtythree, 50]
 gravity :top,           [50, 0, 100, 50]
+gravity :partial_top,   [0,0, 100, 70]
 gravity :top33,         [50, 0, thirtythree, thirtythree]
 gravity :top50,         [50, 0, thirtythree, 50]
 gravity :top_right,     [100, 0, 50, 50]
@@ -192,6 +193,7 @@ gravity :bottom_left,   [0, 100, 50, 50]
 gravity :bottom_left50, [0, 100, thirtythree, 50]
 gravity :bottom_left33, [0, 100, thirtythree, thirtythree]
 gravity :bottom,        [0, 100, 100, 50]
+gravity :partial_bottom,[0, 100, 100, 30]
 gravity :bottom66,      [50, 100, thirtythree, 50]
 gravity :bottom33,      [50, 100, thirtythree, thirtythree]
 gravity :bottom_right,  [100, 100, 50, 50]
@@ -386,18 +388,20 @@ grab "W-KP_6", [ :right,        :right33,        :right50,      :righth,    :rig
 grab "W-KP_1", [ :bottom_left,  :bottom_left50,  :bottom_left33  ]
 grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
 grab "W-KP_3", [ :bottom_right, :bottom_right50, :bottom_right33 ]
+grab "W-KP_0", [ :partial_top, :partial_bottom ]
 
 # Exec programs
 grab "W-Return", "urxvtc"
 grab "W-e", "gedit"
 grab "W-c", "iron"
+grab "W-g", "gvim"
 grab "W-h", "hotot"
 grab "W-m", "mpd"
 grab "W-n", "urxvtc -name ncmpcpp -e ncmpcpp"
 grab "W-t", "urxvtc -name tmux -e tmux"
 grab "W-a", "urxvtc -name tmux -e tmux a || tmux"
 grab "W-f", "filezilla"
-grab "W-p", "pcmanfm-mod"
+grab "W-p", "thunar"
 grab "W-r", "urxvtc -name ranger -e ranger"
 grab "W-v", "urxvtc -name vim -e vim"
 
@@ -557,8 +561,14 @@ tag "default" do
 end
 
 tag "fm" do
-  match "pcmanfm-mod"
+  match "thunar"
   gravity :right
+end
+
+tag "matlab" do
+  match :class => ".*mat(lab|hworks).*"
+  resize true  
+  float true
 end
 
 tag "flash" do
@@ -674,7 +684,7 @@ view "dev" do
 end
 
 view "bullshit" do
-  match "default|hotot|fm"
+  match "default|hotot|fm|matlab"
   dynamic false
   icon "#{ENV["HOME"]}/.local/share/subtle/icons/quote.xbm"
   icon_only true
@@ -685,6 +695,41 @@ view "vbox" do
   dynamic false
   icon "#{ENV["HOME"]}/.local/share/subtle/icons/pc.xbm"
   icon_only true
+end
+
+# Sublets
+
+sublet :clock do
+  interval 60
+  foreground "#a03636"
+  format_string "%d/%m/%y %H:%M"
+end
+
+sublet :volume do
+  interval 60
+  foreground "#93d44f"
+end
+
+sublet :wifi do
+  interval 60
+  foreground "#ffc123"
+end
+
+sublet :battery do
+  interval 60
+  foreground "#f57900"
+end
+
+sublet :mpd do
+  interval 60
+  foreground "#46a4ff"
+  format_string "%note% %artist% - %album% - %title%"
+end
+
+sublet :fuzzytime do
+  interval 60
+  foreground "#ff6565"
+  locale "fr"
 end
 
 # == Hooks

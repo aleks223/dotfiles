@@ -1,7 +1,7 @@
-xterm*foreground: #D4D4D4
-xterm*background: #181818
-XTerm*cursorColor: #8FEA26
-xterm*font: xft:Pragmata:size=8.5
+xterm*foreground: #555555
+xterm*background: #eeeeee
+XTerm*cursorColor: #0066ff
+XTerm*font: -misc-fixed-medium-r-*-*-12-*-*-*-*-60-iso8859-*
 
 ! -- Xft settings -- !
 Xft.dpi:        96
@@ -16,94 +16,79 @@ Xft.autohint: 1
 URxvt*scrollBar_right: false
 URxvt*scrollBar: false
 URxvt*borderLess: false
-URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.perl-ext-common: default,matcher
 URxvt.matcher.button:   1
 URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.launcher.1:   /usr/bin/jumanji
-URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt.matcher.launcher.2:   gvim +$2 $1
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-bg: 1
-URxvt.tabbed.tabbar-fg: 3
+URxvt.matcher.launcher.1:   /usr/bin/iron
+!URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
+!URxvt.matcher.launcher.2:   gvim +$2 $1
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-bg: 1
+!URxvt.tabbed.tabbar-fg: 3
 
 ! -- Fonts -- !
-URxvt.font:xft:Envy Code R:size=8.5
+!URxvt.font:xft:Pragmata:size=9
+URxvt*font:		-misc-fixed-medium-r-*-*-13-*-*-*-*-60-iso8859-*
+URxvt*boldFont:		-misc-fixed-medium-r-*-*-13-*-*-*-*-60-iso8859-*
 
 ! Urxvt
 URxvt.buffered: true
-URxvt.background: #181818
-URxvt.foreground: #D4D4D4
-URxvt.cursorColor: #0081DE
+URxvt.background: #eeeeee
+URxvt.foreground: #555555
+
+URxvt.cursorColor: #0066ff
 URxvt.cursorBlink: true
 URxvt.geometry: 100x30
-URxvt.depth: 24
-
+URxvt.depth: 32
+URxvt.colorUL: #FFCC00
 URxvt.title: Urxvt
-URxvt.urlLauncher: chromium
+URxvt.urlLauncher: iron
 URxvt.urgentOnBell: true
-urxvt.visualBell: false
-urxvt.mapAlert: true
+URxvt.visualBell: false
+URxvt.mapAlert: true
 
-!Theme Eight
-!*color0:     rgb:33/33/33
-!*color1:     rgb:cd/5c/5c
-!*color2:     rgb:2e/8b/57
-!*color3:     rgb:ff/cc/00
-!*color4:     rgb:00/81/de
-!*color5:     rgb:ba/55/d3
-!*color6:     rgb:46/82/b4
-!*color7:     rgb:d3/d3/d3
-!*color8:     rgb:4d/4d/4d
-!*color9:     rgb:ff/6a/6a
-!*color10:    rgb:8f/bc/8f
-!*color11:    rgb:ff/fa/cd
-!*color12:    rgb:1e/90/ff
-!*color13:    rgb:db/70/93
-!*color14:    rgb:5f/9e/a0
-!*color15:    rgb:ff/ff/ff
+! Black
+*color0:      #555555
+*color8:      #555753
+! Red
+*color1:      #ff6565
+*color9:      #ff8d8d
+! Green
+*color2:      #93d44f
+*color10:     #c8e7a8
+! Yellow
+*color3:      #eab93d
+*color11:     #ffc123
+! Blue
+*color4:      #0066ff
+*color12:     #3465a4
+! Mangenta
+*color5:      #ce5c00
+*color13:     #f57900
+! Cyan 
+*color6:      #89b6e2
+*color14:     #46a4ff
+! White
+*color7:     #cccccc
+*color15:     #ffffff
 
-!! jwr dark
-!black
- *color0:  #181818
- *color8:  #3D3D3D
-!red
- *color1:  #8C4665
- *color9:  #BF4D80
-!green
- *color2:  #287373
- *color10: #53A6A6
-!yellow
- *color3:  #8B769F
- *color11: #C4A1E6
-!blue
- *color4:  #395573
- *color12: #477AB3
-!magenta
- *color5:  #5E468C
- *color13: #7E62B3
-!cyan
- *color6:  #31658C
- *color14: #6096BF
-!white
- *color7:  #899CA1
- *color15: #C0C0C0
 xcalc*geometry: 300x475
 xcalc*background: #D4D4D4
-xcalc.ti.bevel.screen.background: #333333
-xcalc.ti.bevel.screen.DEG.background: #333333
+xcalc.ti.bevel.screen.background: #181818
+xcalc.ti.bevel.screen.DEG.background: #181818
 xcalc.ti.bevel.screen.DEG.foreground: LightSeaGreen
-xcalc.ti.bevel.screen.GRAD.background: #333333
+xcalc.ti.bevel.screen.GRAD.background: #181818
 xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
-xcalc.ti.bevel.screen.RAD.background: #333333
+xcalc.ti.bevel.screen.RAD.background: #181818
 xcalc.ti.bevel.screen.RAD.foreground: LightSeaGreen
-xcalc.ti.bevel.screen.INV.background: #333333
+xcalc.ti.bevel.screen.INV.background: #181818
 xcalc.ti.bevel.screen.INV.foreground: Red
-xcalc.ti.bevel.screen.LCD.background: #333333
+xcalc.ti.bevel.screen.LCD.background: #181818
 xcalc.ti.bevel.screen.LCD.foreground: LightSeaGreen
 xcalc.ti.bevel.screen.LCD.shadowWidth: 0
-xcalc.ti.bevel.screen.M.background: #333333
+xcalc.ti.bevel.screen.M.background: #181818
 xcalc.ti.bevel.screen.M.foreground: LightSeaGreen
-xcalc.ti.bevel.screen.P.background: #333333
+xcalc.ti.bevel.screen.P.background: #181818
 xcalc.ti.bevel.screen.P.foreground: Yellow
 xcalc.ti.Command.foreground: White
 xcalc.ti.Command.background: #777777
@@ -131,4 +116,4 @@ xcalc*Cursor:                 hand2
 xcalc*ShapeStyle:             rectangle
 
 xpdf*background: #D4D4D4
-xpdf*foreground: #333333
+xpdf*foreground: #181818

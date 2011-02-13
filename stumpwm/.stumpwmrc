@@ -1,0 +1,165 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                  ;;
+;;  .stumpwmrc                                      ;;
+;;                                                  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(in-package :stumpwm)
+
+(set-contrib-dir "/usr/share/stumpwm/")
+
+(set-prefix-key (kbd "C-t"))
+
+;; Hook
+;(add-hook *focus-frame-hook* (lambda (w foo) (warp-pointer (current-screen) (window-x w) (window-y w))))
+
+;; Notify
+(defun msg-notify (fmt args)
+  (let ((*executing-stumpwm-command* nil)
+        (*message-window-gravity* :center))
+     (message-no-timeout fmt args)))
+
+(defcommand notify (msg) ((:rest "Notify: "))
+ (msg-notify "~a" msg))
+
+;; Pointer
+(stumpwm:run-shell-command "xsetroot -cursor_name left_ptr -fg white -bg black")
+
+;; Fullscreen
+(defcommand my-fullscreen () ()
+  (let ((group-file (format nil "/tmp/stumpwm-group-~a" (group-name (current-group)))))
+    (if (null (cdr (head-frames (current-group) (current-head))))
+        (restore-from-file group-file)
+        (progn
+          (dump-group-to-file group-file)
+          (only)))))
+
+;; Gravities
+(setf *mouse-focus-policy* :click
+      *window-border-style* :thin
+      *message-window-gravity* :center
+      *input-window-gravity* :center)
+(set-normal-gravity :bottom)
+(set-maxsize-gravity :center)
+(set-transient-gravity :bottom)
+
+;; borders.
+(setf *resize-hides-windows* T
+      *normal-border-width* 2
+      *maxsize-border-width* 2
+      *transient-border-width* 2
+      *float-window-border* 1
+      *float-window-title-height* 1)
+(set-msg-border-width 1)
+
+;; Timeout
+(setf *timeout-wait* 2)
+
+;; fonts/colors
+;(set-font "-*-fixed-medium-r-normal-*-10-*-*-*-*-*-*-*")
+(set-font "-*-pragmata-*-*-*-*-17-*-*-*-*-*-*-*")
+;(set-font "-*-fixed-medium-r-normal-*-24-*-*-*-*-*-*-*")
+
+(set-fg-color "grey9")
+(set-bg-color "grey53")
+(set-focus-color "steelblue")
+(set-unfocus-color "grey53")
+(set-border-color "grey9")
+(set-win-bg-color "grey9")
+(setf *colors* (list "grey9"          ; 0 black
+                     "palevioletred1" ; 1 red
+                     "lightblue3"     ; 2 green
+                     "bisque3"        ; 3 yellow
+                     "steelblue3"     ; 4 blue
+                     "slateblue1"     ; 5 magenta
+                     "aquamarine4"    ; 6 cyan
+                     "honeydew4"      ; 7 white
+                     "thistle4"       ; 8 user
+                     "lightskyblue4")); 9 user
+
+;; Turn of welcome message
+(setf *startup-message* "Welcome alex !")
+
+;; Basic keys
+(define-key *root-map* (kbd "q") "quit")
+(define-key *root-map* (kbd "M-r") "reload")
+(define-key *root-map* (kbd "e") "exec")
+
+;; Programs
+(define-key *top-map* (kbd "s-n") "exec urxvtc -e ncmpcpp")
+(define-key *top-map* (kbd "s-c") "exec iron")
+(define-key *top-map* (kbd "s-p") "exec thunar")
+(define-key *top-map* (kbd "s-v") "exec urxvtc -e vim")
+(define-key *top-map* (kbd "s-RET") "exec urxvtc")
+(define-key *top-map* (kbd "s-t") "exec urxvtc -e tmux")
+(define-key *top-map* (kbd "s-a") "exec urxvtc -e tmux a")
+(define-key *top-map* (kbd "s-l") "exec slock")
+
+;; Window management
+(define-key *top-map* (kbd "s-f") "my-fullscreen")
+(define-key *root-map* (kbd "i") "vsplit")
+(define-key *root-map* (kbd "j") "hsplit")
+(define-key *top-map* (kbd "C-Left") "move-focus left")
+(define-key *top-map* (kbd "C-Down") "move-focus down")
+(define-key *top-map* (kbd "C-Up") "move-focus up")
+(define-key *top-map* (kbd "C-Right") "move-focus right")
+(define-key *top-map* (kbd "s-Up") "pull-hidden-previous")
+(define-key *top-map* (kbd "s-Down") "pull-hidden-next")
+(define-key *top-map* (kbd "C-M-Left") "move-window left")
+(define-key *top-map* (kbd "C-M-Down") "move-window down")
+(define-key *top-map* (kbd "C-M-Right") "move-window right")
+(define-key *top-map* (kbd "C-M-Up") "move-window up")
+
+;; MPD conf
+(load-module "mpd")
+(mpd-connect)
+
+(defun multimedia-key (key action)
+  "Define a multimedia key (bind it directly on *top-map*"
+(define-key *top-map* (kbd key) action))
+
+(defcommand show-song () ()
+  (echo-string (current-screen) (run-shell-command "mpc current" t)))
+
+(defcommand mpd-next-and-display () () (mpd-next) (show-song))
+(defcommand mpd-prev-and-display () () (mpd-prev) (show-song))
+
+(multimedia-key "s-C-Down" "mpd-toggle-pause")
+(multimedia-key "s-C-Up" "mpd-stop")
+(multimedia-key "s-C-Right" "mpd-next-and-display")
+(multimedia-key "s-C-Left" "mpd-prev-and-display")
+(define-key *root-map* (kbd "m") "show-song")
+
+;; Battery
+(defcommand show-battery () ()
+  (echo-string (current-screen) (run-shell-command "acpi -b" t)))
+
+(define-key *root-map* (kbd "b") "show-battery")
+
+;; Date
+(define-key *root-map* (kbd "d") "echo-date")
+
+;; Dynamic groups
+(load (data-dir-file "dynamic-groups" "lisp"))
+
+(defgroup "1" "F1" "1")
+(defgroup "2" "F2" "2")
+(defgroup "3" "F3" "3")
+(defgroup "4" "F4" "4")
+(defgroup "5" "F5" "5")
+(defgroup "6" "F6" "6")
+(defgroup "7" "F7" "7")
+(defgroup "8" "F8" "8")
+(defgroup "9" "F9" "9")
+(defgroup "0" "F10" "0")
+
+(define-key *top-map* (kbd "s-Right") "gnext")
+(define-key *top-map* (kbd "s-Left") "gprev")
+
+;; Use group "1" as default group
+(setf *default-group-name* "1")
+(add-group (current-screen) "1")
+(kill-group (find-group (current-screen) "Default")
+            (find-group (current-screen) "1"))
+
+;;; The End

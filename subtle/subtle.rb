@@ -28,7 +28,7 @@ set :resize, false
 set :padding,    [3, 3, 2, 2]
 
 # Font string either take from e.g. xfontsel or use xft
-set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-60-iso8859-*"
+set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
 #set :font, "xft:Pragmata-9"
 
 # Space around windows
@@ -71,10 +71,10 @@ screen 1 do
   stipple false
 
   # Content of the top panel
-  top     [ :views, :title, :spacer, :mpd, :battery, :volume, :wifi, :fuzzytime, :tray]
+  top     [ :views, :title, :spacer, :mpd, :freq, :battery, :volume, :wifi, :clock, :tray]
 
   # Content of the bottom panel
-  bottom  []
+  # bottom  []
 end
 
 #
@@ -98,7 +98,7 @@ end
 
 # panel and separator
 color :stipple,      "#eeeeee"
-color :panel,        "#eeeeee"
+color :panel,        "#0066ff"
 color :separator,    "#850000"
 
 # title
@@ -127,9 +127,9 @@ color :occupied_bg,      "#555555"
 color :occupied_border,  "#555555" 
 
 # urgent window titles and views
-color :urgent_fg,        "#FFC400" 
-color :urgent_bg,        "#eeeeee" 
-color :urgent_border,    "#eeeeee" 
+color :urgent_fg,        "#eeeeee" 
+color :urgent_bg,        "#FFC400" 
+color :urgent_border,    "#FFC400" 
  
 # client
 color :client_active,   "#0066ff" 
@@ -167,7 +167,7 @@ gravity :top_left,      [0, 0, 50, 50]
 gravity :top_left33,    [0, 0, thirtythree, thirtythree]
 gravity :top_left50,    [0, 0, thirtythree, 50]
 gravity :top,           [50, 0, 100, 50]
-gravity :partial_top,   [0,0, 100, 70]
+gravity :partial_top,   [0,0, 100, 60]
 gravity :top33,         [50, 0, thirtythree, thirtythree]
 gravity :top50,         [50, 0, thirtythree, 50]
 gravity :top_right,     [100, 0, 50, 50]
@@ -193,7 +193,7 @@ gravity :bottom_left,   [0, 100, 50, 50]
 gravity :bottom_left50, [0, 100, thirtythree, 50]
 gravity :bottom_left33, [0, 100, thirtythree, thirtythree]
 gravity :bottom,        [0, 100, 100, 50]
-gravity :partial_bottom,[0, 100, 100, 30]
+gravity :partial_bottom,[0, 100, 100, 40]
 gravity :bottom66,      [50, 100, thirtythree, 50]
 gravity :bottom33,      [50, 100, thirtythree, thirtythree]
 gravity :bottom_right,  [100, 100, 50, 50]
@@ -700,34 +700,34 @@ end
 # Sublets
 
 sublet :clock do
-  interval 60
-  foreground "#a03636"
-  format_string "%d/%m/%y %H:%M"
+  foreground "#ff6565"
+  format_string "%d.%m.%y %H:%M"
 end
 
 sublet :volume do
-  interval 60
   foreground "#93d44f"
 end
 
 sublet :wifi do
-  interval 60
+  interval 120
   foreground "#ffc123"
 end
 
+sublet :freq do
+  interval 1
+  foreground "#ce5c00"
+end
+
 sublet :battery do
-  interval 60
   foreground "#f57900"
 end
 
 sublet :mpd do
-  interval 60
   foreground "#46a4ff"
   format_string "%note% %artist% - %album% - %title%"
 end
 
 sublet :fuzzytime do
-  interval 60
   foreground "#ff6565"
   locale "fr"
 end

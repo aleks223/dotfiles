@@ -11,7 +11,7 @@ set :border, 2
 set :step, 2
 
 # Window screen border snapping
-set :snap, 3
+set :snap, 0
 
 # Default starting gravity for windows (0 = gravity of last client)
 set :gravity, :center
@@ -30,7 +30,7 @@ set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
 #set :font, "xft:Pragmata-9"
 
 # Space around windows
-set :gap, 2
+set :gap, 0
 
 # Separator between sublets
 set :separator, ""
@@ -118,7 +118,7 @@ gravity :left,          [0, 0, 50, 100]
 gravity :left66,        [0, 50, 25, 100]
 gravity :left50,        [0, 50, 50, 34]
 gravity :left33,        [0, 50, 34, 34]
-gravity :leftw,         [0, 50, 2*34, 100]
+gravity :leftw,         [0, 50, 66, 100]
 gravity :lefth,         [0, 50, 75, 100]
 gravity :center,        [0, 0, 100, 100]
 gravity :center66,      [0, 50, 100, 34]
@@ -129,7 +129,7 @@ gravity :right66,       [100, 50, 25, 100]
 gravity :right50,       [100, 50, 50, 34]
 gravity :right33,       [100, 50, 34, 34]
 gravity :rightw,        [100, 0, 60, 100]
-gravity :righth,        [100, 50, 2*34, 100]
+gravity :righth,        [100, 50, 66, 100]
 gravity :bottom_left,   [0, 100, 50, 50]
 gravity :bottom_left50, [0, 100, 34, 50]
 gravity :bottom_left33, [0, 100, 34, 34]
@@ -357,7 +357,7 @@ tag "matlab" do
 end
 
 tag "flash" do
-  match "<unkown>|exe|operapluginwrapper" 
+  match "<unkown>|exe|operapluginwrapper"
   stick true
 end
 

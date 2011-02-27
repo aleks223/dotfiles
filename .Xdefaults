@@ -1,7 +1,10 @@
+Xcursor.theme: Aero
+
+XTerm*termName: xterm-256color
 xterm*foreground: #555555
 xterm*background: #eeeeee
 XTerm*cursorColor: #0066ff
-XTerm*font: -misc-fixed-medium-r-*-*-12-*-*-*-*-60-iso8859-*
+XTerm*font: -misc-fixed-medium-r-*-*-13-*-*-*-*-*-iso10646-*s
 
 ! -- Xft settings -- !
 Xft.dpi:        96
@@ -19,7 +22,7 @@ URxvt*borderLess: false
 URxvt.perl-ext-common: default,matcher
 URxvt.matcher.button:   1
 URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.launcher.1:   /usr/bin/iron
+URxvt.matcher.launcher.1:   /usr/bin/chromium
 !URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
 !URxvt.matcher.launcher.2:   gvim +$2 $1
 !URxvt.tabbed.tabbar-bg: 0
@@ -28,19 +31,19 @@ URxvt.matcher.launcher.1:   /usr/bin/iron
 
 ! -- Fonts -- !
 !URxvt.font:xft:Pragmata:size=9
-URxvt*font:		-misc-fixed-medium-r-*-*-13-*-*-*-*-60-iso8859-*
-URxvt*boldFont:		-misc-fixed-medium-r-*-*-13-*-*-*-*-60-iso8859-*
+URxvt*font:		-misc-fixed-medium-r-*-*-13-*-*-*-*-*-iso10646-*
+URxvt*boldFont:		-misc-fixed-medium-r-*-*-13-*-*-*-*-*-iso10646-*
 
 ! Urxvt
 URxvt.buffered: true
-URxvt.background: #eeeeee
 URxvt.foreground: #555555
+URxvt.background: #eeeeee
 
 URxvt.cursorColor: #0066ff
 URxvt.cursorBlink: true
 URxvt.geometry: 100x30
 URxvt.depth: 32
-URxvt.colorUL: #FFCC00
+URxvt.colorUL: #FFC400
 URxvt.title: Urxvt
 URxvt.urlLauncher: iron
 URxvt.urgentOnBell: true
@@ -48,8 +51,8 @@ URxvt.visualBell: false
 URxvt.mapAlert: true
 
 ! Black
-*color0:      #555555
-*color8:      #555753
+*color7:      #555555
+*color15:      #555753
 ! Red
 *color1:      #ff6565
 *color9:      #ff8d8d
@@ -65,12 +68,12 @@ URxvt.mapAlert: true
 ! Mangenta
 *color5:      #ce5c00
 *color13:     #f57900
-! Cyan 
+! Cyan
 *color6:      #89b6e2
 *color14:     #46a4ff
 ! White
-*color7:     #cccccc
-*color15:     #ffffff
+*color0:      #cccccc
+*color8:     #ffffff
 
 xcalc*geometry: 300x475
 xcalc*background: #D4D4D4

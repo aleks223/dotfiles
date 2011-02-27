@@ -36,8 +36,8 @@ URxvt*boldFont:		-misc-fixed-medium-r-*-*-13-*-*-*-*-*-iso10646-*
 
 ! Urxvt
 URxvt.buffered: true
-URxvt.foreground: #555555
-URxvt.background: #eeeeee
+URxvt.foreground: #999999
+URxvt.background: #181818
 
 URxvt.cursorColor: #0066ff
 URxvt.cursorBlink: true
@@ -51,8 +51,8 @@ URxvt.visualBell: false
 URxvt.mapAlert: true
 
 ! Black
-*color7:      #555555
-*color15:      #555753
+*color0:      #555555
+*color8:      #555753
 ! Red
 *color1:      #ff6565
 *color9:      #ff8d8d
@@ -72,8 +72,8 @@ URxvt.mapAlert: true
 *color6:      #89b6e2
 *color14:     #46a4ff
 ! White
-*color0:      #cccccc
-*color8:     #ffffff
+*color7:      #cccccc
+*color15:     #ffffff
 
 xcalc*geometry: 300x475
 xcalc*background: #D4D4D4

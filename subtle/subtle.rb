@@ -5,13 +5,13 @@
 #
 
 # Border size in pixel of the windows
-set :border, 2
+set :border, 3
 
 # Window move/resize steps in pixel per keypress
 set :step, 2
 
 # Window screen border snapping
-set :snap, 0
+set :snap, 3
 
 # Default starting gravity for windows (0 = gravity of last client)
 set :gravity, :center
@@ -23,20 +23,20 @@ set :urgent, true
 set :resize, false
 
 # Screen size padding (left, right, top, bottom)
-set :padding,    [3, 3, 2, 2]
+set :padding,    [2, 2, 1, 1]
 
 # Font string either take from e.g. xfontsel or use xft
-set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
-#set :font, "xft:Pragmata-9"
+#set :font, "-misc-fixed-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+set :font, "xft:Envy Code R-8"
 
 # Space around windows
-set :gap, 0
+set :gap, 4
 
 # Separator between sublets
 set :separator, ""
 
 # Outline border size in pixel of panel items
-set :outline, 0
+set :outline, 2
 
 #
 # == Screen
@@ -47,7 +47,7 @@ screen 1 do
   stipple false
 
   # Content of the top panel
-  top     [ :views, :title, :spacer, :mpd, :freq, :battery, :volume, :wifi, :gmail, :clock, :tray ]
+  top     [ :title, :spacer, :clock, :spacer, :mpd, :freq, :battery, :volume, :gmail, :wifi, :tray, :views ]
 
   # Content of the bottom panel
   # bottom  [ :mail ]
@@ -59,45 +59,42 @@ end
 
 # panel and separator
 color :stipple,      "#eeeeee"
-color :panel,        "#0066ff"
+color :panel,        "#181818"
 color :separator,    "#850000"
 
 # title
-color :title_fg,        "#eeeeee"
-color :title_bg,        "#0066ff"
-color :title_border,    "#0066ff"
+color :title_fg,        "#888888"
+color :title_bg,        "#181818"
+color :title_border,    "#181818"
 
 # view button
 color :views_fg,      "#555555"
-color :views_bg,      "#eeeeee" 
-color :views_border,  "#eeeeee"
+color :views_bg,      "#181818"
+color :views_border,  "#333333"
 
 # sublets
-color :sublets_fg,    "#555555"
-color :sublets_bg,    "#eeeeee"
-color :sublets_border,"#eeeeee"
- 
+color :sublets_fg,    "#0066ff"
+color :sublets_bg,    "#181818"
+color :sublets_border,"#181818"
+
 # focus window titles and active views
-color :focus_fg,         "#eeeeee" 
-color :focus_bg,         "#0066ff" 
-color :focus_border,     "#0066ff"
- 
+color :focus_fg,         "#8fea26"
+color :focus_bg,         "#181818"
+color :focus_border,     "#333333"
+
 # occupied
-color :occupied_fg,      "#eeeeee" 
-color :occupied_bg,      "#555555" 
-color :occupied_border,  "#555555" 
+color :occupied_fg,      "#888888"
+color :occupied_bg,      "#181818"
+color :occupied_border,  "#333333"
 
 # urgent window titles and views
-color :urgent_fg,        "#eeeeee"
-color :urgent_bg,        "#FFC400" 
-color :urgent_border,    "#FFC400" 
- 
-# client
-color :client_active,   "#0066ff" 
-color :client_inactive, "#555555"
+color :urgent_fg,        "#ffc400"
+color :urgent_bg,        "#555555"
+color :urgent_border,    "#333333"
 
-# panel
-color :panel, "#0066ff"
+# client
+color :client_active,   "#181818"
+color :client_inactive, "#333333"
 
 #
 # == Gravities
@@ -105,62 +102,67 @@ color :panel, "#0066ff"
 
   # Gravities
 gravity :top_left,      [0, 0, 50, 50]
-gravity :top_left33,    [0, 0, 34, 34]
+#gravity :top_left33,    [0, 0, 34, 34]
 gravity :top_left50,    [0, 0, 34, 50]
+gravity :top_left75,	[0, 0, 50, 75]
 gravity :top,           [50, 0, 100, 50]
-gravity :partial_top,   [0,0, 100, 60]
-gravity :top33,         [50, 0, 34, 34]
+#gravity :top33,         [50, 0, 34, 34]
 gravity :top50,         [50, 0, 34, 50]
+gravity :top75,		[0, 0, 100, 75]
 gravity :top_right,     [100, 0, 50, 50]
-gravity :top_right33,   [100, 0, 34, 34]
+#gravity :top_right33,   [100, 0, 34, 34]
 gravity :top_right50,   [100, 0, 34, 50]
+gravity :top_right75,	[100, 0, 50, 75]
 gravity :left,          [0, 0, 50, 100]
-gravity :left66,        [0, 50, 25, 100]
+#gravity :left66,        [0, 50, 25, 100]
 gravity :left50,        [0, 50, 50, 34]
-gravity :left33,        [0, 50, 34, 34]
-gravity :leftw,         [0, 50, 66, 100]
-gravity :lefth,         [0, 50, 75, 100]
+#gravity :left33,        [0, 50, 34, 34]
+#gravity :leftw,         [0, 50, 66, 100]
+#gravity :lefth,         [0, 50, 75, 100]
 gravity :center,        [0, 0, 100, 100]
-gravity :center66,      [0, 50, 100, 34]
+#gravity :center66,      [0, 50, 100, 34]
 gravity :center33,      [50, 50, 50, 34]
-gravity :center75,      [50, 50, 50, 100]
+#gravity :center75,      [50, 50, 50, 100]
 gravity :right,         [100, 0, 50, 100]
-gravity :right66,       [100, 50, 25, 100]
+#gravity :right66,       [100, 50, 25, 100]
 gravity :right50,       [100, 50, 50, 34]
-gravity :right33,       [100, 50, 34, 34]
-gravity :rightw,        [100, 0, 60, 100]
-gravity :righth,        [100, 50, 66, 100]
+#gravity :right33,       [100, 50, 34, 34]
+#gravity :rightw,        [100, 0, 60, 100]
+#gravity :righth,        [100, 50, 66, 100]
 gravity :bottom_left,   [0, 100, 50, 50]
 gravity :bottom_left50, [0, 100, 34, 50]
-gravity :bottom_left33, [0, 100, 34, 34]
+#gravity :bottom_left33, [0, 100, 34, 34]
+gravity :bottom_left25, [0, 100, 50, 25]
 gravity :bottom,        [0, 100, 100, 50]
-gravity :partial_bottom,[0, 100, 100, 40]
-gravity :bottom66,      [50, 100, 34, 50]
-gravity :bottom33,      [50, 100, 34, 34]
+#gravity :bottom66,      [50, 100, 34, 50]
+#gravity :bottom33,      [50, 100, 34, 34]
+gravity :bottom25,	[0, 100, 100, 25]
 gravity :bottom_right,  [100, 100, 50, 50]
 gravity :bottom_right50, [100, 100, 34, 50]
-gravity :bottom_right33, [100, 100, 34, 34]
+#gravity :bottom_right33, [100, 100, 34, 34]
+gravity :bottom_right25, [100, 100, 50, 25]
   # Gimp
 gravity :gimp_image,     [  50,  50,  80, 100 ]
 gravity :gimp_toolbox,   [   0,   0,  10, 100 ]
 gravity :gimp_dock,      [ 100,   0,  10, 100 ]
   # Scratchpad
 gravity :scratch, [ 46, 85, 46, 20 ]
+
 #
 # == Grabs
 #
 
 # Launcher
 begin
-   require "#{ENV["HOME"]}/subtle-contrib/ruby/launcher.rb" 
- 
+   require "#{ENV["HOME"]}/subtle-contrib/ruby/launcher.rb"
+
    # Set fonts
    Subtle::Contrib::Launcher.fonts = [
      "xft:Pragmata:pixelsize=50:antialias=true",
      "xft:Pragmata:pixelsize=25:antialias=true"
    ]
    Subtle::Contrib::Launcher.paths = [
-     "/usr/bin","/home/alex/Matlab/bin"
+     "/usr/bin"
    ]
  rescue LoadError => error
    puts error
@@ -177,7 +179,7 @@ begin
  rescue LoadError => error
   puts error
 end
- 
+
 grab "W-y" do
   Subtle::Contrib::Selector.run
 end
@@ -250,31 +252,29 @@ grab "C-Right", :WindowRight
 grab "A-q", :WindowKill
 
 # Cycle between given gravities
-grab "W-KP_7", [ :top_left,     :top_left50,     :top_left33     ]
-grab "W-KP_8", [ :top,          :top50,          :top33          ]
-grab "W-KP_9", [ :top_right,    :top_right50,    :top_right33    ]
-grab "W-KP_4", [ :left,         :left33,         :left50,      :lefth,      :leftw        ]
-grab "W-KP_5", [ :center,       :center33,       :center66,       :center75 ]
-grab "W-KP_6", [ :right,        :right33,        :right50,      :righth,    :rightw       ]
-grab "W-KP_1", [ :bottom_left,  :bottom_left50,  :bottom_left33  ]
-grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
-grab "W-KP_3", [ :bottom_right, :bottom_right50, :bottom_right33 ]
-grab "W-KP_0", [ :partial_top, :partial_bottom ]
+grab "W-KP_7", [ :top_left,     :top_left50,     :top_left75	]
+grab "W-KP_8", [ :top,          :top50,          :top75		]
+grab "W-KP_9", [ :top_right,    :top_right50,    :top_right75    ]
+grab "W-KP_4", [ :left,         :left50        ]
+grab "W-KP_5", [ :center,       :center33      ]
+grab "W-KP_6", [ :right,        :right50       ]
+grab "W-KP_1", [ :bottom_left,  :bottom_left50,  :bottom_left25  ]
+grab "W-KP_2", [ :bottom,       :bottom25       ]
+grab "W-KP_3", [ :bottom_right, :bottom_right50, :bottom_right25 ]
 
 # Exec programs
 grab "W-Return", "urxvtc"
-grab "W-e", "gedit"
-grab "W-c", "iron"
+grab "W-c", "chromium"
 grab "W-g", "gvim"
 grab "W-h", "hotot"
 grab "W-m", "urxvtc -name mutt -e mutt"
-grab "W-C-m", "urxvtc -e matlab -nosplash -desktop"
 grab "W-n", "mpd && urxvtc -name ncmpcpp -e ncmpcpp || urxvtc -name ncmpcpp -e ncmpcpp"
-grab "W-t", "urxvtc -name tmux -e tmux"
-grab "W-a", "urxvtc -name tmux -e tmux a || tmux"
-grab "W-f", "filezilla"
+grab "W-t", "urxvtc -name screen -e screen"
+grab "W-a", "urxvtc -name screen -e screen -r"
+grab "W-f", "firefox"
+grab "W-C-f", "filezilla"
 grab "W-p", "thunar"
-grab "W-r", "urxvtc -name ranger -e ranger"
+grab "W-r", "urxvtc -name ranger -e mc"
 grab "W-v", "urxvtc -name vim -e vim"
 
 # MPC grabs
@@ -324,12 +324,12 @@ end
 
 tag "tmux" do
   match "tmux|screen"
-  gravity :partial_top
+  gravity :top75
 end
 
 tag "mpd" do
   match "ncmpcpp"
-  gravity :partial_bottom
+  gravity :bottom25
 end
 
 tag "mail" do
@@ -384,7 +384,7 @@ end
 
 # Modes
 tag "stick" do
-  match "mplayer"
+  match "mplayer|ranger"
   float true
   stick true
 end
@@ -435,7 +435,7 @@ end
 view "www" do
   match "www"
   dynamic false
-  icon "#{ENV["HOME"]}/.local/share/subtle/icons/world.xbm"
+  icon "#{ENV["HOME"]}/.local/share/subtle/icons/cannon.xbm"
   icon_only true
 end
 
@@ -477,8 +477,6 @@ end
 view "prog" do
   match "matlab"
   dynamic true
-  icon "#{ENV["HOME"]}/.local/share/subtle/icons/terminal.xbm"
-  icon_only true
 end
 
 #
@@ -486,29 +484,29 @@ end
 #
 
 sublet :clock do
-  foreground "#ce5c00"
+  foreground "#89b6e2"
   format_string "%d.%m.%y %H:%M"
 end
 
 sublet :volume do
-  foreground "#93d44f"
+  foreground "#8fea26"
 end
 
 sublet :wifi do
-  foreground "#ffc123"
+  foreground "#eab93d"
 end
 
 sublet :freq do
   interval 1
-  foreground "#ff6565"
+  foreground "#ce5c00"
 end
 
 sublet :gmail do
-  user "USER@gmail.com"
-  password "PASS"
-  foreground "#555753"
+  user "THE_LEGEND@gmail.com"
+  password "SUPER_PASS"
+  foreground "#93d44f"
   urgent "#ffc400"
-  normal "#eeeeee"
+  normal "#333333"
 end
 
 sublet :battery do
@@ -516,7 +514,7 @@ sublet :battery do
 end
 
 sublet :mpd do
-  foreground "#46a4ff"
+  foreground "#cccccc"
   format_string "%note% %artist% - %album% - %title%"
 end
 
